@@ -1,0 +1,101 @@
+----------------------------------------------------------------------------------------------------------
+******* SBLOMARS READMORE
+----------------------------------------------------------------------------------------------------------
+
+In order to configure Sblomars in your computer it should be useful reading the lines
+below from CONFIGURATION FILES section in wich are explained the files to be modified
+and how.
+
+
+___CONFIGURATION FILES:____ 
+
+Modify and follow the instructions indicated in the listed configuration files from below:
+
+
+_images.sh:
+
+        * Where it says "/path_to_Sblomars/" replace it for the path of the Sblomars
+	  folder. 
+	  Example: /home/user/Desktop/Sblomars --> path_to_Sblomars=/home/user/Desktop/
+
+        * Where it says "user@host:/var/www/database/" replace "user" for your remote node 
+          user account. Replace "host" for the ip or domain-host where data will be stored at.
+	  Replace "/var/www/database" for the remote host's location where graphical reports
+	  data will be stored at.
+
+_nodes.txt:
+	
+	* This has to contain the ip/domain-host-name of nodes in which Sblomars will be
+	  be running, one node for each line.
+	  Example: niagara.alberg.com
+		   tomonaka.komo.jp
+
+_copying_directory.sh:
+
+	* Where it says "/path_to_Sblomars/" replace it for the path of the Sblomars
+          folder.
+
+	* Where it says "user@$node:/home/upc_sblomars/" replace "user" for your remote node
+          user account. Replace "/home/upc_sblomars/" for the path in remote node where
+	  Sblomars will be copyied. 
+	  
+_deploy_sblomars.sh:
+
+	* In the command line "ssh user@$node "cd /path_to_Sblomars/Sblomars/ && nohup sh final_sblomars.sh > /dev/null" &"
+	  replace "user" for your remote node user account. Replace /path_to_Sblomars/ 
+	  for the path of the Sblomars folder.
+
+_final_sblomars.sh:
+
+	* Where it says "/path_to_Sblomars/" replace it for the path of the Sblomars
+          folder.
+
+_removing_file.sh:
+	
+	* In command line "ssh user@$node "cd /path_to_Sblomars/Sblomars && rm -rf $1 > /dev/null" &"
+	  replace "user" for your remote node user account. Replace "/path_to_Sblomars/" 
+	  for the path of the Sblomars folder.
+
+_sblomars.lnx:
+	
+	* Where it says "/path_to_Sblomars/" replace it for the path of the Sblomars
+          folder.
+
+_stop_sblomars.sh:
+
+	* In the three lines where appears "ssh user@$node "killall"
+	  replace "user" for your remote node user account.
+ 
+
+If you are going to use BLOMERS you should edit sblomars.conf configuration file, in the line containing
+"resource_manager localhost" replace "localhost" for the domain host name or IP where BLOMERS is running.
+Then stop SBLOMARS and run it again
+
+___SOME HINTS___
+
+	* copying_directory.sh file allows to copy SBLOMARS folder to a list of nodes listed in nodes.txt at the same time.
+	* deploy_sblomars.sh file starts the execution of SBLOMARS in all nodes listed in nodes.txt.
+	* images.sh file enables the transmission of graphical reports between the node and the node-visor(server)
+	* stop_sblomars.sh stops the execution of SBLOMARS in all nodes.
+	
+___MORE ABOUT SBLOMARS'S CONFIGURATION FILES RELATED WITH BLOMERS___
+
+SBLOMARS makes use of some configuration files that allow SBLOMARS to comunicate
+with BLOMERS giving information, others just gives information and some others stablished a policy.
+In SBLOMARS there are basically three configuration files:
+
+● sblomars.conf 
+● snmpd.conf
+● ports.conf
+
+One of these three files is “ports.conf”: It contains the name of device, host, and port in which will be sended some related information, like
+parameters of the device (number of free space in memory, one of the cases of Memory Agent).
+
+“snmpd.conf”:
+It contains the needed information for the correct use of snmp
+
+“sblomars.conf”:
+It contains the host and port used from the Resource Manager devices. Its function is allowing communication
+between SBLOMARS and BLOMERS throught a socket connection in which SBLOMARS sends the ip of its host as an ip request.
+
+:P
